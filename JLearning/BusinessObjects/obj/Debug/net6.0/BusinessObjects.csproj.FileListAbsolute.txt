@@ -1,0 +1,15 @@
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\bin\Debug\net6.0\appsettings.json
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\bin\Debug\net6.0\BusinessObjects.deps.json
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\bin\Debug\net6.0\BusinessObjects.runtimeconfig.json
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\bin\Debug\net6.0\BusinessObjects.dll
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\bin\Debug\net6.0\BusinessObjects.pdb
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\obj\Debug\net6.0\BusinessObjects.csproj.AssemblyReference.cache
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\obj\Debug\net6.0\BusinessObjects.GeneratedMSBuildEditorConfig.editorconfig
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\obj\Debug\net6.0\BusinessObjects.AssemblyInfoInputs.cache
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\obj\Debug\net6.0\BusinessObjects.AssemblyInfo.cs
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\obj\Debug\net6.0\BusinessObjects.csproj.CoreCompileInputs.cache
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\obj\Debug\net6.0\BusinessObjects.dll
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\obj\Debug\net6.0\refint\BusinessObjects.dll
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\obj\Debug\net6.0\BusinessObjects.pdb
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\obj\Debug\net6.0\BusinessObjects.genruntimeconfig.cache
+D:\SE1612_NET\KY8\PRN231\project\JLearning\BusinessObjects\obj\Debug\net6.0\ref\BusinessObjects.dll
