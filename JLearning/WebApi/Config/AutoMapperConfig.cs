@@ -30,6 +30,9 @@ namespace WebApi.Config
 
                 config.CreateMap<ContactDTO, Contact>();
                 config.CreateMap<Contact, ContactDTO>();
+
+                config.CreateMap<FeedbackDTO, Feedback>();
+                config.CreateMap<Feedback, FeedbackDTO>();
                 // more mappings here
             });
 

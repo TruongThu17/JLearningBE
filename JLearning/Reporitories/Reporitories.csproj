@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Chapter\" />
     <Folder Include="Course\" />
-    <Folder Include="Feedback\" />
     <Folder Include="Lesson\" />
     <Folder Include="Test\" />
     <Folder Include="Support\" />
