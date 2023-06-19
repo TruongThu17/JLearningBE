@@ -39,6 +39,9 @@ namespace WebApi.Config
 
                 config.CreateMap<QuestionDTO, Question>();
                 config.CreateMap<Question, QuestionDTO>();
+
+                config.CreateMap<ChapterDTO, Chapter>();
+                config.CreateMap<Chapter, ChapterDTO>();
                 // more mappings here
             });
 
