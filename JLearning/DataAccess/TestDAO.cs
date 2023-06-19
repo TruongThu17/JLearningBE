@@ -8,16 +8,18 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class BlogDetailDAO
+    public class TestDAO
     {
-        public static List<BlogDetail> GetBlogDetails()
+        public static List<Test> GetTests()
         {
-            var listBlogDetails = new List<BlogDetail>();
+            var listTests = new List<Test>();
             try
             {
                 using (var context = new JlearningContext())
                 {
-                    listBlogDetails = context.BlogDetails.ToList();
+                    listTests = context.Tests
+                        .Include(x => x.Questions)
+                        .ToList();
                 }
             }
             catch (Exception e)
@@ -25,16 +27,16 @@ namespace DataAccess
 
                 throw new Exception(e.Message);
             }
-            return listBlogDetails;
+            return listTests;
         }
-        public static BlogDetail FindBlogDetailById(int id)
+        public static Test FindTestById(int id)
         {
-            BlogDetail b = new BlogDetail();
+            Test test = new Test();
             try
             {
                 using (var context = new JlearningContext())
                 {
-                    b = context.BlogDetails.SingleOrDefault(x => x.BlogDetailsId == id);
+                    test = context.Tests.Include(u => u.Questions).SingleOrDefault(x => x.TestId == id);
                 }
             }
             catch (Exception e)
@@ -42,16 +44,15 @@ namespace DataAccess
 
                 throw new Exception(e.Message);
             }
-            return b;
+            return test;
         }
-
-        public static void CreateBlogDetail(BlogDetail b)
+        public static void CreateTest(Test test)
         {
             try
             {
                 using (var context = new JlearningContext())
                 {
-                    context.BlogDetails.Add(b);
+                    context.Tests.Add(test);
                     context.SaveChanges();
                 }
             }
@@ -61,14 +62,14 @@ namespace DataAccess
                 throw new Exception(e.Message);
             }
         }
-        public static void UpdateBlogDetail(BlogDetail b)
+        public static void UpdateTest(Test test)
         {
 
             try
             {
                 using (var context = new JlearningContext())
                 {
-                    context.Entry<BlogDetail>(b).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.Entry<Test>(test).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     context.SaveChanges();
                 }
             }
@@ -78,15 +79,22 @@ namespace DataAccess
                 throw new Exception(e.Message);
             }
         }
-        public static void DeleteBlogDetail(BlogDetail b)
+        public static void DeleteTest(Test t)
         {
             try
             {
                 using (var context = new JlearningContext())
                 {
 
-                    var BlogDetail = context.BlogDetails.SingleOrDefault(x => x.BlogDetailsId == b.BlogDetailsId);
-                    context.BlogDetails.Remove(BlogDetail);
+                    var test = context.Tests.SingleOrDefault(x => x.TestId == t.TestId);
+                        // find test done have same test id and remove    
+                        var testdone = context.TestDones.Where(x => x.TestId == test.TestId).ToList();
+                        context.TestDones.RemoveRange(testdone);
+                        // find question have same test id and remove
+                        var question = context.Questions.Where(x => x.TestId == test.TestId).ToList();
+                        context.Questions.RemoveRange(question);
+
+                    context.Tests.Remove(test);
                     context.SaveChanges();
                 }
             }
