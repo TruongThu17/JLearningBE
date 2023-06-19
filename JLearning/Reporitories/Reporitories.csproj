@@ -11,9 +11,7 @@
     <Folder Include="Course\" />
     <Folder Include="Lesson\" />
     <Folder Include="Test\" />
-    <Folder Include="Support\" />
     <Folder Include="Payment\" />
-    <Folder Include="Question\" />
   </ItemGroup>
 
   <ItemGroup>

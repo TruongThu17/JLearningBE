@@ -33,6 +33,12 @@ namespace WebApi.Config
 
                 config.CreateMap<FeedbackDTO, Feedback>();
                 config.CreateMap<Feedback, FeedbackDTO>();
+
+                config.CreateMap<SupportDTO, Support>();
+                config.CreateMap<Support, SupportDTO>();
+
+                config.CreateMap<QuestionDTO, Question>();
+                config.CreateMap<Question, QuestionDTO>();
                 // more mappings here
             });
 
