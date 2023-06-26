@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BusinessObjects.Models
 {
     public partial class LessonDone
     {
         public int LessonId { get; set; }
-        public string Email { get; set; } = null!;
+
+        [NotNull]
+        public string Email { get; set; }
         public int CourseId { get; set; }
 
         public virtual Course Course { get; set; } = null!;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessObjects.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,9 @@ namespace BusinessObjects.DTO
         public string? Description { get; set; }
         [JsonPropertyName("course_id")]
         public int? CourseId { get; set; }
+        [JsonPropertyName("lessons")]
+        public virtual ICollection<LessonDTO>? Lessons { get; set; }
+        [JsonPropertyName("tests")]
+        public virtual ICollection<TestDTO>? Tests { get; set; }
     }
 }

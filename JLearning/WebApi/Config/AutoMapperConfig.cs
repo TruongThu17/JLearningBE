@@ -45,9 +45,20 @@ namespace WebApi.Config
 
                 config.CreateMap<TestDTO, Test>();
                 config.CreateMap<Test, TestDTO>();
-
                 config.CreateMap<TestDoneDTO, TestDone>();
                 config.CreateMap<TestDone, TestDoneDTO>();
+
+                config.CreateMap<LessonDTO, Lesson>();
+                config.CreateMap<Lesson, LessonDTO>();
+
+                config.CreateMap<LessonDoneDTO, LessonDone>();
+                config.CreateMap<LessonDone, LessonDoneDTO>();
+
+                config.CreateMap<CourseDTO, Course>();
+                config.CreateMap<Course, CourseDTO>();
+
+                config.CreateMap<UserCourseDTO, UserCourse>();
+                config.CreateMap<UserCourse, UserCourseDTO>();
                 // more mappings here
             });
 

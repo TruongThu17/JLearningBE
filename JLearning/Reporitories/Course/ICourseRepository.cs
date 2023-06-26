@@ -12,5 +12,9 @@ namespace Reporitories
         List<Course> GetCourses();
 
         Course FindCourseById(int id);
+        void CreateCourse(Course c);
+        void UpdateCourse(Course c);
+        List<Course> FindCoursesByEmail(string email);
+        void CreateUserCourse(UserCourse uc);
     }
 }

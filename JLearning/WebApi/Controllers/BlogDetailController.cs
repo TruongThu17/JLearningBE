@@ -29,14 +29,9 @@ namespace WebApi.Controllers
         [HttpPost("insert")]
         public ActionResult Post([FromBody][Bind("blog_id,blog_img_url,header,description")] BlogDetailDTO blogDetailDTO)
         {
-            if (ModelState.IsValid)
-            {
                 BlogDetail blogDetail = _mapper.Map<BlogDetail>(blogDetailDTO);
                 repository.CreateBlogDetail(blogDetail);
                 return Ok();
-            }
-
-            return BadRequest(ModelState);
         }
 
         // PUT api/<BlogDetailController>/5
@@ -45,8 +40,6 @@ namespace WebApi.Controllers
         {
             var blogDetail = repository.FindBlogDetailById(blogDetailDTO.BlogDetailsId);
             if (blogDetail == null) return NotFound();
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             BlogDetail b = _mapper.Map<BlogDetail>(blogDetailDTO);
             repository.UpdateBlogDetail(b);
             return Ok();

@@ -29,7 +29,7 @@ namespace WebApi.Controllers
         }
 
         // GET: api/<TestController>
-        [HttpGet]
+        [HttpGet("get")]
         public ActionResult<IEnumerable<TestDTO>> Get()
         {
             IEnumerable<Test> test = repository.GetTests();
@@ -67,14 +67,9 @@ namespace WebApi.Controllers
         [HttpPost("insert")]
         public ActionResult Post([FromBody][Bind("chapter_id,test_name,course_id,description,duration")] TestDTO testDTO)
         {
-            if (ModelState.IsValid)
-            {
                 Test test = _mapper.Map<Test>(testDTO);
                 repository.CreateTest(test);
                 return Ok();
-            }
-
-            return BadRequest(ModelState);
         }
 
         // PUT api/<TestController>/5
@@ -83,8 +78,6 @@ namespace WebApi.Controllers
         {
             var test = repository.FindTestById((int)testDTO.TestId);
             if (test == null) return NotFound();
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             Test t = _mapper.Map<Test>(testDTO);
             repository.UpdateTest(t);
             return Ok();
@@ -106,26 +99,19 @@ namespace WebApi.Controllers
         public ActionResult PostTestDone([FromBody][Bind("test_id,course_id,email")] TestDoneDTO testDoneDTO)
         {
             var checkTestDone = repositoryTestDone.GetTestDone((int)testDoneDTO.CourseId, testDoneDTO.Email, (int)testDoneDTO.TestId);
-            if (checkTestDone != null) return BadRequest(checkTestDone);
-            if (ModelState.IsValid)
+            if (checkTestDone == null)
             {
                 TestDone testDone = _mapper.Map<TestDone>(testDoneDTO);
                 repositoryTestDone.CreateTestDone(testDone);
-                return Ok();
+                
             }
-
-            return BadRequest(ModelState);
+            return Ok();
         }
         [HttpPost("get/test-done")]
         public ActionResult<ArrayList> GetTestDone([FromBody][Bind("course_id,email")] TestDoneDTO testDoneDTO)
         {
-            if (ModelState.IsValid)
-            {
                 ArrayList testID = repositoryTestDone.GetTestDones((int)testDoneDTO.CourseId,testDoneDTO.Email);
                 return Ok(testID);
-            }
-
-            return BadRequest(ModelState);
         }
     }
 }

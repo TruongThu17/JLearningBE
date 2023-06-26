@@ -67,8 +67,6 @@ namespace WebApi.Controllers
         {
             var account = repository.FindAccountByEmail(accountDTO.Email);
             if (account == null) return NotFound();
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             accountDTO.RoleId = account.RoleId;
             Account acc = _mapper.Map<Account>(accountDTO);
             acc.Password = account.Password;

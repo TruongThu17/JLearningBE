@@ -26,7 +26,7 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
         // GET: api/<BlogCategoryController>
-        [HttpGet]
+        [HttpGet("get")]
         public ActionResult<IEnumerable<BlogCategoryDTO>> Get()
         {
             IEnumerable <BlogCategory> bc = repository.GetBlogCategorys();

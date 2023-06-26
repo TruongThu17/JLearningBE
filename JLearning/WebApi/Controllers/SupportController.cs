@@ -26,7 +26,7 @@ namespace WebApi.Controllers
         }
 
         // GET: api/<SupportController>
-        [HttpGet]
+        [HttpGet("get")]
         public ActionResult<IEnumerable<SupportDTO>> Get()
         {
             IEnumerable<Support> support = repository.GetSupports();
@@ -38,14 +38,9 @@ namespace WebApi.Controllers
         [HttpPost("insert")]
         public ActionResult Post([FromBody][Bind("support_name,message")] SupportDTO supportDTO)
         {
-            if (ModelState.IsValid)
-            {
                 Support support = _mapper.Map<Support>(supportDTO);
                 repository.CreateSupport(support);
                 return Ok();
-            }
-
-            return BadRequest(ModelState);
         }
 
         // PUT api/<SupportController>/5
@@ -54,8 +49,6 @@ namespace WebApi.Controllers
         {
             var support = repository.FindSupportById((int)supportDTO.SupportId);
             if (support == null) return NotFound();
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             Support sup = _mapper.Map<Support>(supportDTO);
             repository.UpdateSupport(sup);
             return Ok();

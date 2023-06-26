@@ -25,7 +25,7 @@ namespace WebApi.Controllers
         }
 
         // GET: api/<ContactController>
-        [HttpGet]
+        [HttpGet("get")]
         public ActionResult<IEnumerable<ContactDTO>> Get()
         {
             IEnumerable<Contact> c = repository.GetContacts();
@@ -37,14 +37,9 @@ namespace WebApi.Controllers
         [HttpPost("insert")]
         public ActionResult Post([FromBody][Bind("email,name,request_date,request_message,status")] ContactDTO contactDTO)
         {
-            if (ModelState.IsValid)
-            {
                 Contact contact = _mapper.Map<Contact>(contactDTO);
                 repository.CreateContact(contact);
                 return Ok();
-            }
-
-            return BadRequest(ModelState);
         }
 
 
@@ -54,8 +49,6 @@ namespace WebApi.Controllers
         {
             var contact = repository.FindContactById((int)contactDTO.ContactId);
             if (contact == null) return NotFound();
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             Contact c = _mapper.Map<Contact>(contactDTO);
             repository.UpdateContact(c);
             return Ok();

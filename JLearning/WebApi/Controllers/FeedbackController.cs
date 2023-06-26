@@ -38,14 +38,9 @@ namespace WebApi.Controllers
         [HttpPost("insert")]
         public ActionResult Post([FromBody][Bind("course_id,course_name,email,message,name,star,user_avatar_url")] FeedbackDTO feedbackDTO)
         {
-            if (ModelState.IsValid)
-            {
                 Feedback Feedback = _mapper.Map<Feedback>(feedbackDTO);
                 repository.CreateFeedback(Feedback);
                 return Ok();
-            }
-
-            return BadRequest(ModelState);
         }
 
         // PUT api/<FeedbackController>/5
@@ -54,8 +49,6 @@ namespace WebApi.Controllers
         {
             var fb = repository.FindFeedBackById((int)feedbackDTO.CourseId, feedbackDTO.Email);
             if (fb == null) return NotFound();
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             Feedback feedback = _mapper.Map<Feedback>(feedbackDTO);
             repository.UpdateFeedback(feedback);
             return Ok();

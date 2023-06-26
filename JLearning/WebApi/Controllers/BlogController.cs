@@ -27,7 +27,7 @@ namespace WebApi.Controllers
         }
 
         // GET: api/<BlogController>
-        [HttpGet]
+        [HttpGet("get")]
         public ActionResult<IEnumerable<BlogDTO>> Get()
         {
             IEnumerable<Blog> b = repository.GetBlogs();
@@ -50,14 +50,9 @@ namespace WebApi.Controllers
         [HttpPost("insert")]
         public ActionResult Post([FromBody][Bind("blog_category_id,blog_name,blog_avatar_url,blog_description,created_date,status")] BlogDTO blogDTO)
         {
-            if (ModelState.IsValid)
-            {
                 Blog blog = _mapper.Map<Blog>(blogDTO);
                 repository.CreateBlog(blog);
                 return Ok();
-            }
-
-            return BadRequest(ModelState);
         }
 
         // PUT api/<BlogController>/5
@@ -66,8 +61,6 @@ namespace WebApi.Controllers
         {
             var blog = repository.FindBlogById(blogDTO.BlogId);
             if (blog == null) return NotFound();
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             Blog b = _mapper.Map<Blog>(blogDTO);
             repository.UpdateBlog(b);
             return Ok();

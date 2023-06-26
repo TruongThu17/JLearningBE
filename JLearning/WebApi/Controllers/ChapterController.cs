@@ -30,14 +30,9 @@ namespace WebApi.Controllers
         [HttpPost("insert")]
         public ActionResult Post([FromBody][Bind("course_id,chapter_name,description")] ChapterDTO chapterDTO)
         {
-            if (ModelState.IsValid)
-            {
                 Chapter chapter = _mapper.Map<Chapter>(chapterDTO);
                 repository.CreateChapter(chapter);
                 return Ok();
-            }
-
-            return BadRequest(ModelState);
         }
 
         // PUT api/<ChapterController>/5
@@ -46,8 +41,6 @@ namespace WebApi.Controllers
         {
             var chapter = repository.FindChapterById((int)chapterDTO.ChapterId);
             if (chapter == null) return NotFound();
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             Chapter chap = _mapper.Map<Chapter>(chapterDTO);
             repository.UpdateChapter(chap);
             return Ok();

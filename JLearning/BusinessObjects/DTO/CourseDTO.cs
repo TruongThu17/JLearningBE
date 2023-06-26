@@ -27,6 +27,6 @@ namespace BusinessObjects.DTO
         [JsonPropertyName("created_at")]
         public DateTime? CreatedAt { get; set; }
         [JsonPropertyName("chapters")]
-        public virtual ICollection<Chapter> Chapters { get; set; }
+        public virtual ICollection<ChapterDTO>? Chapters { get; set; }
     }
 }

@@ -30,14 +30,9 @@ namespace WebApi.Controllers
         [HttpPost("insert")]
         public ActionResult Post([FromBody][Bind("test_id,answer_1,answer_2,answer_3,answer_4,description,explaination,correct_answer")] QuestionDTO questionDTO)
         {
-            if (ModelState.IsValid)
-            {
                 Question question = _mapper.Map<Question>(questionDTO);
                 repository.CreateQuestion(question);
                 return Ok();
-            }
-
-            return BadRequest(ModelState);
         }
 
         // PUT api/<QuestionController>/5
@@ -46,8 +41,6 @@ namespace WebApi.Controllers
         {
             var question = repository.FindQuestionById((int)questionDTO.QuestionId);
             if (question == null) return NotFound();
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             Question ques = _mapper.Map<Question>(questionDTO);
             repository.UpdateQuestion(ques);
             return Ok();
